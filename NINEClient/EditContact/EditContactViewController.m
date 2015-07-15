@@ -10,6 +10,8 @@
 
 @interface EditContactViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableView *mainTableView;
+
 @end
 
 @implementation EditContactViewController
@@ -48,6 +50,15 @@
     if (sender.tag == 12) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    return cell;
 }
 
 @end
