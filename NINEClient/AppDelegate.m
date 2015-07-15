@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "MyInfoViewController.h"
+#import "MyMessageViewController.h"
+#import "PhoneCallViewController.h"
 
 @interface AppDelegate ()
 
@@ -14,9 +17,36 @@
 
 @implementation AppDelegate
 
+- (UIWindow *)window {
+    if (!_window) {
+        _window = ({
+            UIWindow * win = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            win.backgroundColor = [UIColor whiteColor];
+            [win makeKeyAndVisible];
+            win;
+        });
+    }
+    return _window;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    UITabBarController * tabBarController = [[UITabBarController alloc] init];
+    
+    MyInfoViewController * info = [[MyInfoViewController alloc] init];
+    UINavigationController * infoNav = [[UINavigationController alloc] initWithRootViewController:info];
+    
+    MyMessageViewController * mess = [[MyMessageViewController alloc] init];
+    UINavigationController * messNav = [[UINavigationController alloc] initWithRootViewController:mess];
+    
+    PhoneCallViewController * phon = [[PhoneCallViewController alloc] init];
+    UINavigationController * phonNav = [[UINavigationController alloc] initWithRootViewController:phon];
+    
+    tabBarController.viewControllers = @[phonNav,infoNav,messNav];
+    
+    self.window.rootViewController = tabBarController;
+    
     return YES;
 }
 
